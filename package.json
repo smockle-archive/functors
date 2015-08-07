@@ -1,0 +1,26 @@
+{
+  "name": "functors",
+  "version": "1.0.0",
+  "description": "Functors, as explained in chapter 8 of DrBoolean’s “Mostly Adequate Guide to Functional Programming”",
+  "main": "lib/container.js",
+  "scripts": {
+    "test": "mocha --harmony_arrow_functions --harmony_classes --compilers js:babel/register tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smockle/functors.git"
+  },
+  "author": "Clay Miller <clay@smockle.com> (http://www.smockle.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smockle/functors/issues"
+  },
+  "homepage": "https://github.com/smockle/functors",
+  "dependencies": {
+    "babel": "^5.8.21",
+    "chai": "^3.2.0",
+    "eslint": "^1.0.0",
+    "eslint-plugin-react": "^3.2.0",
+    "ramda": "^0.17.1"
+  }
+}
