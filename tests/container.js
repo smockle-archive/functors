@@ -53,14 +53,14 @@ describe('Container', () => {
   describe('#map', () => {
     it('should map to a Container of number', () => {
       assert.deepEqual(
-        Container(2).map(function(two) { return two + 2 }),
+        Container(2).map(two => two + 2 ),
         Container(4)
       );
     });
 
     it('should map to a Container of string', () => {
       assert.deepEqual(
-        Container("flamethrowers").map(function(s) { return s.toUpperCase() }),
+        Container("flamethrowers").map(s => s.toUpperCase()),
         Container('FLAMETHROWERS')
       );
     });

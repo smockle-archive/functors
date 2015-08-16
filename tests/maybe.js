@@ -2,6 +2,7 @@ import Maybe from '../lib/maybe';
 import {assert} from 'chai';
 import util from 'util';
 import * as _ from 'ramda';
+import {match,add} from '../lib/utility';
 
 describe('Maybe', () => {
   describe('#constructor', () => {
@@ -67,14 +68,14 @@ describe('Maybe', () => {
   describe('#map', () => {
     it('should map to a Maybe of number', () => {
       assert.deepEqual(
-        Maybe(2).map(function(two) { return two + 2 }),
+        Maybe(2).map(two => two + 2 ),
         Maybe(4)
       );
     });
 
     it('should map to a Maybe of string', () => {
       assert.deepEqual(
-        Maybe("flamethrowers").map(function(s) { return s.toUpperCase() }),
+        Maybe("flamethrowers").map(s => s.toUpperCase()),
         Maybe('FLAMETHROWERS')
       );
     });
@@ -83,6 +84,34 @@ describe('Maybe', () => {
       assert.deepEqual(
         Maybe("bombs").map(_.concat(' away')).map(_.prop('length')),
         Maybe(10)
+      );
+    });
+
+    it('should map to a Maybe of string array', () => {
+      assert.deepEqual(
+        Maybe("Malkovich Malkovich").map(match(/a/ig)),
+        Maybe(['a', 'a'])
+      );
+    });
+
+    it('should map to a Maybe of null', () => {
+      assert.deepEqual(
+        Maybe(null).map(match(/a/ig)),
+        Maybe(null)
+      );
+    });
+
+    it('should chain successive map to a Maybe of null', () => {
+      assert.deepEqual(
+        Maybe({name: "Boris"}).map(_.prop("age")).map(add(10)),
+        Maybe(null)
+      );
+    });
+
+    it('should chain success map to a Maybe of number', () => {
+      assert.deepEqual(
+        Maybe({name: "Dinah", age: 14}).map(_.prop("age")).map(add(10)),
+        Maybe(24)
       );
     });
   });
